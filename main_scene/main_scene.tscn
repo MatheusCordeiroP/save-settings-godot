@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdfcbs7mjyb3y"]
+
+[ext_resource type="Script" path="res://main_scene/main_scene.gd" id="1_2ib63"]
+
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("volume", "idioma", "efeito")]
+script = ExtResource("1_2ib63")
+volume = NodePath("CanvasLayer/Control/HBoxContainer/VBoxContainerItens/SpinBoxVolume")
+idioma = NodePath("CanvasLayer/Control/HBoxContainer/VBoxContainerItens/OptionButtonIdioma")
+efeito = NodePath("CanvasLayer/Control/HBoxContainer/VBoxContainerItens/CheckButtonEfeitos")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainerVazioE" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainerItens" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelVolume" type="Label" parent="CanvasLayer/Control/HBoxContainer/VBoxContainerItens"]
+layout_mode = 2
+text = "Volume do Jogo"
+
+[node name="SpinBoxVolume" type="SpinBox" parent="CanvasLayer/Control/HBoxContainer/VBoxContainerItens"]
+layout_mode = 2
+max_value = 10.0
+value = 7.0
+rounded = true
+
+[node name="LabelIdioma" type="Label" parent="CanvasLayer/Control/HBoxContainer/VBoxContainerItens"]
+layout_mode = 2
+text = "Idioma"
+
+[node name="OptionButtonIdioma" type="OptionButton" parent="CanvasLayer/Control/HBoxContainer/VBoxContainerItens"]
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "Português"
+popup/item_1/text = "English"
+popup/item_1/id = 1
+popup/item_2/text = "日本語"
+popup/item_2/id = 2
+
+[node name="CheckButtonEfeitos" type="CheckButton" parent="CanvasLayer/Control/HBoxContainer/VBoxContainerItens"]
+layout_mode = 2
+text = "Desabilitar Efeitos Visuais"
+
+[node name="LabelVazio" type="Label" parent="CanvasLayer/Control/HBoxContainer/VBoxContainerItens"]
+layout_mode = 2
+
+[node name="ButtonSalvar" type="Button" parent="CanvasLayer/Control/HBoxContainer/VBoxContainerItens"]
+layout_mode = 2
+text = "Salvar Configurações"
+
+[node name="VBoxContainerVazioD" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="button_down" from="CanvasLayer/Control/HBoxContainer/VBoxContainerItens/ButtonSalvar" to="." method="apply_new_settings"]
